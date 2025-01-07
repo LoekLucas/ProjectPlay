@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canInteract)
         {
-            item.GetComponent<InterractableScript>().doWhat();
+            item.GetComponent<InterractablePainting>().doWhat();
         }
     }
 }
