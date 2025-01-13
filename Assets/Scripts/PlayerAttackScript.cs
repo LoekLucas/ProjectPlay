@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerAttackScript : MonoBehaviour
 {
@@ -11,11 +13,51 @@ public class PlayerAttackScript : MonoBehaviour
     private bool isFiring = false;
     public float spreadAngle = 10f; // Angle to offset bullets
     private float timer = 0;
+    public GameObject aimIndicator; // Aim visualization object
+    private int range = 2;
 
     // Update is called once per frame
     void FixedUpdate()
     {
         timer += Time.deltaTime;
+
+        if (aimIndicator != null)
+        {
+            Light2D light = aimIndicator.GetComponent<Light2D>();
+            if (light == null)
+            {
+                Debug.LogError("Aim indicator does not have a Light2D component!");
+                return;
+            }
+
+            Color currentColor = light.color;
+            float currentAlpha = currentColor.a;
+
+            if (IsMouseWithinCircle(range))
+            {
+                // Mouse is within the circle, decrease alpha towards 0
+                if (!Mathf.Approximately(currentAlpha, 0f))
+                {
+                    float newAlpha = Mathf.MoveTowards(currentAlpha, 0f, Time.deltaTime * 2f); // Adjust speed
+                    light.color = new Color(currentColor.r, currentColor.g, currentColor.b, newAlpha);
+                }
+                else
+                {
+                    UpdateAimIndicator();
+                }
+            }
+            else
+            {
+                UpdateAimIndicator();
+                // Mouse is outside the circle, increase alpha towards 1
+                if (!Mathf.Approximately(currentAlpha, 1f))
+                {
+                    float newAlpha = Mathf.MoveTowards(currentAlpha, 1f, Time.deltaTime * 2f); // Adjust speed
+                    light.color = new Color(currentColor.r, currentColor.g, currentColor.b, newAlpha);
+                }
+            }
+        }
+
         if (isFiring && timer > 0.075f)
         {
             // Convert mousePos from screen space to world space
@@ -65,4 +107,42 @@ public class PlayerAttackScript : MonoBehaviour
         float sin = Mathf.Sin(rad);
         return new Vector2(cos * v.x - sin * v.y, sin * v.x + cos * v.y);
     }
+    void UpdateAimIndicator()
+    {
+        if (aimIndicator != null)
+        {
+            // Convert mousePos from screen space to world space
+            Vector2 worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+            // Calculate direction and target angle
+            Vector2 direction = (worldMousePos - (Vector2)transform.position).normalized;
+            float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+
+            // Get the current rotation of the aim indicator
+            Quaternion currentRotation = aimIndicator.transform.rotation;
+
+            // Calculate the target rotation
+            Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
+
+            // Smoothly rotate towards the target rotation
+            aimIndicator.transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, Time.deltaTime * 5f); // Adjust speed multiplier (5f) as needed
+
+            aimIndicator.transform.position = (Vector2)transform.position + direction; // Offset from the player
+        }
+    }
+
+
+    // Check if the mouse is within a circle around the player
+    bool IsMouseWithinCircle(float radius)
+    {
+        // Convert mousePos from screen space to world space
+        Vector2 worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+        // Calculate the distance between the player and the mouse position
+        float distance = Vector2.Distance(worldMousePos, transform.position);
+
+        // Check if the distance is less than or equal to the radius
+        return distance <= radius;
+    }
+
 }
