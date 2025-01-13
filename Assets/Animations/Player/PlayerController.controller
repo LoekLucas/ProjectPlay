@@ -192,7 +192,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: player_idle
-  m_Speed: 0.25
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -8924041925899077542}
@@ -222,7 +222,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 522841818075130840}
-    m_Position: {x: 330, y: -40, z: 0}
+    m_Position: {x: 350, y: -40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6570605841428309662}
     m_Position: {x: 340, y: 30, z: 0}
@@ -244,7 +244,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: player_walk
-  m_Speed: 1
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -1421473500510155310}

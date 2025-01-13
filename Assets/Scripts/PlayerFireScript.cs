@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerFireScript : MonoBehaviour
 {
@@ -10,12 +12,14 @@ public class PlayerFireScript : MonoBehaviour
     private bool canHome = true;
     public Animator animator;
     public AudioSource audioSource;
+    public Light2D spotLight;
     // Start is called before the first frame update
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer.material.color = new Color(1, 1, 1, 0);
+        spotLight.color = Color.red;
         Destroy(gameObject, 5f);
     }
 
@@ -68,6 +72,7 @@ public class PlayerFireScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") && !isHoming && canHome)
         {
             isHoming = true;
+            spotLight.color = Color.yellow;
             rb.velocity = Vector3.zero;
             target = collision.gameObject;
             if (!animator.GetBool("isHoming") && canHome)

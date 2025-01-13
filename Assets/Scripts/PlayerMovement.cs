@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
     private float horizontal = 0;
     private float vertical = 0;
+    public float horizontalSpeed;
+    public float verticalSpeed;
     private Rigidbody2D rb;
     public Animator Animator;
     public bool canWalk = true;
@@ -18,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * 7, vertical * 6);
+        rb.velocity = new Vector2(horizontal * horizontalSpeed, vertical * verticalSpeed);
         if (rb.velocity != Vector2.zero)
         {
 
