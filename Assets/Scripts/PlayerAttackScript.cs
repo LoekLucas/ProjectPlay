@@ -38,7 +38,7 @@ public class PlayerAttackScript : MonoBehaviour
                 // Mouse is within the circle, decrease alpha towards 0
                 if (!Mathf.Approximately(currentAlpha, 0f))
                 {
-                    float newAlpha = Mathf.MoveTowards(currentAlpha, 0f, Time.deltaTime * 2f); // Adjust speed
+                    float newAlpha = Mathf.MoveTowards(currentAlpha, 0f, Time.deltaTime * 2.5f); // Adjust speed
                     light.color = new Color(currentColor.r, currentColor.g, currentColor.b, newAlpha);
                 }
                 else
@@ -52,7 +52,7 @@ public class PlayerAttackScript : MonoBehaviour
                 // Mouse is outside the circle, increase alpha towards 1
                 if (!Mathf.Approximately(currentAlpha, 1f))
                 {
-                    float newAlpha = Mathf.MoveTowards(currentAlpha, 1f, Time.deltaTime * 2f); // Adjust speed
+                    float newAlpha = Mathf.MoveTowards(currentAlpha, 1f, Time.deltaTime * 2.5f); // Adjust speed
                     light.color = new Color(currentColor.r, currentColor.g, currentColor.b, newAlpha);
                 }
             }
@@ -125,7 +125,7 @@ public class PlayerAttackScript : MonoBehaviour
             Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
 
             // Smoothly rotate towards the target rotation
-            aimIndicator.transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, Time.deltaTime * 5f); // Adjust speed multiplier (5f) as needed
+            aimIndicator.transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, Time.deltaTime * 10f); // Adjust speed multiplier (5f) as needed
 
             aimIndicator.transform.position = (Vector2)transform.position + direction; // Offset from the player
         }

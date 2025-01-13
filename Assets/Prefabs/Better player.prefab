@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 529257895972689161}
   - component: {fileID: 4896596517267261393}
   - component: {fileID: 1249223708720038118}
+  - component: {fileID: 2095161912552116084}
   m_Layer: 3
   m_Name: Better player
   m_TagString: Player
@@ -312,6 +313,78 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2095161912552116084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4386405903235613559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.19909707, y: -0.768247, z: 0}
+  - {x: -0.19923797, y: -0.73889554, z: 0}
+  - {x: -0.16395739, y: -0.65240115, z: 0}
+  - {x: -0.18842624, y: -0.61598253, z: 0}
+  - {x: -0.22256875, y: -0.5715972, z: 0}
+  - {x: -0.2214306, y: -0.4703078, z: 0}
+  - {x: -0.26126352, y: -0.41226554, z: 0}
+  - {x: -0.2624017, y: -0.35763755, z: 0}
+  - {x: -0.21801642, y: -0.3007334, z: 0}
+  - {x: -0.21438465, y: -0.2178759, z: 0}
+  - {x: -0.25272274, y: -0.1274285, z: 0}
+  - {x: -0.33151507, y: -0.11166999, z: 0}
+  - {x: -0.3472736, y: -0.06264365, z: 0}
+  - {x: -0.3437717, y: 0.0003902316, z: 0}
+  - {x: -0.3822924, y: 0.079182565, z: 0}
+  - {x: -0.36828488, y: 0.20174837, z: 0}
+  - {x: -0.44007343, y: 0.2385182, z: 0}
+  - {x: -0.44182444, y: 0.273537, z: 0}
+  - {x: -0.3822924, y: 0.31731054, z: 0}
+  - {x: -0.35252643, y: 0.4118613, z: 0}
+  - {x: -0.39629996, y: 0.48890275, z: 0}
+  - {x: -0.40680557, y: 0.5729479, z: 0}
+  - {x: -0.31575668, y: 0.6359818, z: 0}
+  - {x: -0.28874484, y: 0.76080513, z: 0}
+  - {x: -0.20369637, y: 0.8023212, z: 0}
+  - {x: 0.03268063, y: 0.7673024, z: 0}
+  - {x: 0.13466206, y: 0.8115824, z: 0}
+  - {x: 0.23228802, y: 0.7848118, z: 0}
+  - {x: 0.2865671, y: 0.6832572, z: 0}
+  - {x: 0.40913296, y: 0.59921205, z: 0}
+  - {x: 0.39074808, y: 0.4083595, z: 0}
+  - {x: 0.46078575, y: 0.30505395, z: 0}
+  - {x: 0.38899702, y: 0.1859899, z: 0}
+  - {x: 0.42051396, y: 0.03365809, z: 0}
+  - {x: 0.33821988, y: -0.15194172, z: 0}
+  - {x: 0.2681822, y: -0.26049992, z: 0}
+  - {x: 0.31195563, y: -0.3883187, z: 0}
+  - {x: 0.28218964, y: -0.42859027, z: 0}
+  - {x: 0.2891935, y: -0.4776166, z: 0}
+  - {x: 0.2716841, y: -0.6579635, z: 0}
+  - {x: 0.3027523, y: -0.76255596, z: 0}
+  - {x: 0.1736314, y: -0.8032917, z: 0}
+  - {x: 0.10007809, y: -0.7832808, z: 0}
+  - {x: 0.06883715, y: -0.7505888, z: 0}
+  - {x: 0.01927407, y: -0.79807585, z: 0}
+  - {x: -0.12577954, y: -0.81554836, z: 0}
+  m_ShapePathHash: 694087563
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -207658
+  m_LocalBounds:
+    m_Center: {x: 0.009480655, y: -0.001982987, z: 0}
+    m_Extent: {x: 0.4513051, y: 0.8135654, z: 0}
 --- !u!1 &5292804457580595372
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,7 +633,7 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 1
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 1
+  m_ShadowIntensityEnabled: 0
   m_ShadowIntensity: 0.9
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
