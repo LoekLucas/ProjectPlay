@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementLoek : MonoBehaviour
 {
     private float horizontal = 0;
     private float vertical = 0;
@@ -12,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     public Animator Animator;
     public bool canWalk = true;
-    public bool canInteract;
+    private bool canInteract;
+    private bool interacting;
     private GameObject item;
     private void Start()
     {
@@ -62,8 +63,7 @@ public class PlayerMovement : MonoBehaviour
         if (canInteract)
         {
             item.GetComponent<InterractablePainting>().doWhat();
-            rb.velocity = new Vector2(0, 0);
+            canInteract = false;
         }
     }
 }
-
