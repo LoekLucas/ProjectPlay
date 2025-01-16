@@ -44,26 +44,37 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Box"))
+        if (collision.gameObject.tag.StartsWith("Interactable"))
         {
             canInteract = true;
             item = collision.gameObject;
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Box"))
+        if (collision.gameObject.tag.StartsWith("Interactable"))
         {
             canInteract = false;
         }
     }
+
     public void Interacting(InputAction.CallbackContext context)
     {
-        if (canInteract)
+        if (canInteract && item != null)
         {
-            item.GetComponent<InterractablePainting>().doWhat();
-            rb.velocity = new Vector2(0, 0);
+            if (item.CompareTag("InteractablePainting"))
+            {
+                item.GetComponent<InteractablePainting>()?.doWhat();
+            }
+            else if (item.CompareTag("InteractableKeyPad"))
+            {
+                item.GetComponent<KeyPad>()?.doWhat();
+            }
+
+            rb.velocity = Vector2.zero;
         }
     }
+
 }
 

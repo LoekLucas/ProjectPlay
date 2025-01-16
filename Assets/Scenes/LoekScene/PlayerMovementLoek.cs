@@ -62,7 +62,7 @@ public class PlayerMovementLoek : MonoBehaviour
     {
         if (canInteract)
         {
-            item.GetComponent<InterractablePainting>().doWhat();
+            item.GetComponent<InteractablePainting>().doWhat();
             canInteract = false;
         }
     }

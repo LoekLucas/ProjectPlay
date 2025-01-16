@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class InterractablePainting : MonoBehaviour
+public class InteractablePainting : MonoBehaviour
 {
     public GameObject DarkOverlay;
 
@@ -17,10 +17,10 @@ public class InterractablePainting : MonoBehaviour
     public string whatToDo;
 
     public CameraZoom CameraZoom;
-
+    private PlayerMovement playerMovement;
     public bool isOn;
 
-    private PlayerMovement playerMovement;
+    
 
     private void Start()
     {

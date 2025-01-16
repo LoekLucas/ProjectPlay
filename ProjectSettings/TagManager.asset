@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Player Bullet
   - Box
+  - InteractablePainting
+  - InteractableKeyPad
   layers:
   - Default
   - TransparentFX
