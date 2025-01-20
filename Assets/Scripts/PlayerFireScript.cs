@@ -47,23 +47,27 @@ public class PlayerFireScript : MonoBehaviour
             else
             {
                 isHoming = false;
+                rb.velocity = direction.normalized * 15;
             }
         }
         else
         {   
-            //rb.AddForce(direction.normalized * 20,ForceMode2D.Force);
-            rb.velocity = direction.normalized * 15;
+            rb.AddForce(direction.normalized,ForceMode2D.Impulse);
+            //rb.velocity = direction.normalized * 15;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Wall"))
         {
             spriteRenderer.material.color = new Color(1, 1, 1, 0);
             audioSource.Play();
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = 0;
+            Vector2 normal = collision.contacts[0].normal; // Get the surface normal at the collision point
+            direction = Vector2.Reflect(rb.velocity.normalized, normal); // Reflect the velocity
+        }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
             Destroy(gameObject, 0.1f);
         }
     }
