@@ -5,10 +5,14 @@ using UnityEngine;
 public class CameraZoom : MonoBehaviour
 {
     public Camera cam;
-    public float zoomFactor = 0.9f; // Factor to scale the zoom (for example, 0.9 = zoom in by 10%)
+    public float zoomFactor = 0.9f; // Factor to scale the zoom (For example,, 0.9 = zoom in by 10%)
     public float zoomSpeed = 30f;
+    public float smoothTime = 0.3f;
+    public bool useEasing = true;
+
     private float targetZoom;
     private float standardZoom;
+    private float velocity = 0f;
 
     void Start()
     {
@@ -18,12 +22,19 @@ public class CameraZoom : MonoBehaviour
 
     void Update()
     {
-        cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, targetZoom, zoomSpeed * Time.deltaTime);
+        if (useEasing)
+        {
+            cam.orthographicSize = Mathf.SmoothDamp(cam.orthographicSize, targetZoom, ref velocity, smoothTime);
+        }
+        else
+        {
+            cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, targetZoom, zoomSpeed * Time.deltaTime);
+        }
     }
 
     public void ZoomIn()
     {
-        targetZoom *= zoomFactor; // Zoom in by scaling down the target zoom
+        targetZoom *= zoomFactor;
     }
 
     public void ZoomOut()

@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementLoek : MonoBehaviour
 {
     private float horizontal = 0;
     private float vertical = 0;
@@ -12,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     public Animator Animator;
     public bool canWalk = true;
-    public bool canInteract;
+    private bool canInteract;
+    private bool interacting;
     private GameObject item;
     private void Start()
     {
@@ -44,37 +45,25 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag.StartsWith("Interactable"))
+        if (collision.gameObject.CompareTag("Box"))
         {
             canInteract = true;
             item = collision.gameObject;
         }
     }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag.StartsWith("Interactable"))
+        if (collision.gameObject.CompareTag("Box"))
         {
             canInteract = false;
         }
     }
-
     public void Interacting(InputAction.CallbackContext context)
     {
-        if (canInteract && item != null)
+        if (canInteract)
         {
-            if (item.CompareTag("InteractablePainting"))
-            {
-                item.GetComponent<InteractablePainting>()?.doWhat();
-            }
-            else if (item.CompareTag("InteractableKeyPad"))
-            {
-                item.GetComponent<KeyPad>()?.doWhat();
-            }
-
-            rb.velocity = Vector2.zero;
+            item.GetComponent<InteractablePainting>().doWhat();
+            canInteract = false;
         }
     }
-
 }
-
