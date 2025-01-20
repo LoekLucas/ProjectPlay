@@ -21,6 +21,7 @@ public class KeyPad : MonoBehaviour
     public Button Button9;
     public Button Button0;
     public GameObject Keypad;
+    public GameObject Door;
     public GameObject DarkOverlay;
     public Component InteractionTrigger;
 
@@ -100,6 +101,7 @@ public class KeyPad : MonoBehaviour
             await Task.Delay(2000);
             DisableInteraction();
             Destroy(InteractionTrigger);
+            Destroy(Door);
             InteractionTrigger = null;
 
         }
