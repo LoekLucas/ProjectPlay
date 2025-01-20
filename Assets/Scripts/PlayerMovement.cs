@@ -20,19 +20,25 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * horizontalSpeed, vertical * verticalSpeed);
-        if (rb.velocity != Vector2.zero)
+        if (!GlobalReferences.Instance.isInInventory)
         {
+            rb.velocity = new Vector2(horizontal * horizontalSpeed, vertical * verticalSpeed);
+            if (rb.velocity != Vector2.zero)
+            {
 
-            Animator.SetBool("isWalking", true);
-            Animator.SetFloat("MoveX", horizontal);
-            Animator.SetFloat("MoveY", vertical);
+                Animator.SetBool("isWalking", true);
+                Animator.SetFloat("MoveX", horizontal);
+                Animator.SetFloat("MoveY", vertical);
+            }
+            else
+            {
+                Animator.SetBool("isWalking", false);
+            }
         }
         else
         {
-            Animator.SetBool("isWalking", false);
+            rb.velocity = Vector2.zero;
         }
-
     }
     public void Move(InputAction.CallbackContext context)
     {
