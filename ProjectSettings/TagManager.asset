@@ -10,6 +10,8 @@ TagManager:
   - Box
   - InteractablePainting
   - InteractableKeyPad
+  - Statue
+  - InteractableStatue
   layers:
   - Default
   - TransparentFX

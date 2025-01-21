@@ -77,6 +77,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 item.GetComponent<KeyPad>()?.doWhat();
             }
+            else if (item.CompareTag("InteractableStatue"))
+            {
+                item.GetComponent<StatueScript>()?.doWhat();
+            }
+
 
             rb.velocity = Vector2.zero;
         }
