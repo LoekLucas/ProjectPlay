@@ -13,6 +13,10 @@ public class StatueScript : MonoBehaviour
     public Button Statue3;
     public Button BackButton;
 
+    public TMP_Text Statue1Text;
+    public TMP_Text Statue2Text;
+    public TMP_Text Statue3Text;
+
     public CameraZoom CameraZoom;
     private PlayerMovement playerMovement;
 
@@ -91,6 +95,8 @@ public class StatueScript : MonoBehaviour
 
     async void CheckCode()
     {
+        DisplayStatuePoses();
+
         if (statue1Pose == 3 && statue2Pose == 1 && statue3Pose == 2)
         {
             Debug.Log("Correct Code Entered!");
@@ -102,8 +108,26 @@ public class StatueScript : MonoBehaviour
         }
         else
         {
-            
+
         }
+    }
+
+    private void DisplayStatuePoses()
+    {
+        Statue1Text.text = $"{GetPoseDescription(statue1Pose)}";
+        Statue2Text.text = $"{GetPoseDescription(statue2Pose)}";
+        Statue3Text.text = $"{GetPoseDescription(statue3Pose)}";
+    }
+
+    private string GetPoseDescription(int pose)
+    {
+        return pose switch
+        {
+            1 => "1",
+            2 => "2",
+            3 => "3",
+            _ => "Unknown Pose"
+        };
     }
 
     public void DisableInteraction()
